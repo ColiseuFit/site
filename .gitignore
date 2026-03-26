@@ -30,7 +30,6 @@ Design/
 *.log
 
 # Documentação Privada (Local apenas)
-*.md
 *.obsidian
 .obsidian/
 .vercel
