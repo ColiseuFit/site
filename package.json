@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "dev": "npm run dev:app",
+    "dev:app": "cd app-coliseu && npm run dev",
+    "serve:site": "npx serve ."
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.100.0"
+  }
+}

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clube Coliseu | Pesquisa de Grade Personalizada</title>
+    <link rel="icon" type="image/svg+xml" href="/research-page/favicon.svg">
+    <link rel="alternate icon" type="image/png" href="favicon.png"> <!-- Fallback (opcional, se converter) -->
+
+    <!-- SEO & Social Preview -->
+    <meta name="description" content="Ajude o Coliseu a montar a Grade Inteligente. Responda em menos de 2 minutos e garanta seu lugar nos melhores horários.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="🏋️ Coliseu | Pesquisa de Grade Inteligente">
+    <meta property="og:description" content="Diga quais dias e horários você quer treinar. Juntos vamos montar a grade perfeita!">
+    <meta property="og:image" content="https://gzvflbsjksmriqfaiizr.supabase.co/storage/v1/object/public/assets/og-coliseu.png">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="🏋️ Coliseu | Pesquisa de Grade Inteligente">
+    <meta name="twitter:description" content="Diga quais dias e horários você quer treinar. Juntos vamos montar a grade perfeita!">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/research-page/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-coliseu">
+                <img src="/research-page/logo-coliseu.svg" alt="Coliseu Logo">
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="step-indicator" id="step-indicator">Passo 1 de 7</p>
+        </header>
+
+        <form id="quiz-form">
+            <!-- Passo 1: Vídeo de Boas-vindas -->
+            <section class="quiz-step active" data-step="1">
+                <h1>BEM-VINDO AO <br>CLUBE COLISEU</h1>
+                <p class="subtitle">Assista ao recado do Coach Thauã para entender esse novo ciclo do Coliseu.</p>
+                <div class="video-container">
+                    <video 
+                        id="intro-video"
+                        playsinline 
+                        preload="auto"
+                        poster="https://gzvflbsjksmriqfaiizr.supabase.co/storage/v1/object/public/assets/og-coliseu.png"
+                        onclick="toggleVideo()"
+                    >
+                        <source src="https://gzvflbsjksmriqfaiizr.supabase.co/storage/v1/object/public/assets/VD-LP-PESQUISA-DE-GRADE.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                    
+                    <!-- Overlay de Play Customizado -->
+                    <div class="video-overlay" id="video-overlay" onclick="handleVideoPlay()">
+                        <div class="play-button-wrapper">
+                            <div class="play-button">
+                                <svg viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mensagem de Instrução -->
+                <div class="video-instruction" id="video-instruction">
+                    <i class="fas fa-lock"></i> Assista ao vídeo para liberar o acesso
+                </div>
+            </section>
+
+            <section class="quiz-step" data-step="2">
+                <h1>IDENTIFICAÇÃO</h1>
+                <p class="subtitle">Nesta nova fase, queremos estar mais próximos do seu resultado.</p>
+                <div class="input-group">
+                    <label>Nome Completo</label>
+                    <input type="text" id="name" placeholder="Digite seu nome..." required>
+                </div>
+                <div class="input-group">
+                    <label>WhatsApp</label>
+                    <input type="tel" id="whatsapp" placeholder="(00) 00000-0000" required>
+                </div>
+                <div class="privacy-badge">
+                    <i class="fas fa-lock"></i>
+                    Seus dados estão seguros.
+                </div>
+            </section>
+
+            <!-- Passo 2: Tipo de Plano -->
+            <section class="quiz-step" data-step="3">
+                <h1>SUA JORNADA</h1>
+                <p class="subtitle">Como você faz parte da nossa comunidade hoje?</p>
+                <div class="radio-group row">
+                    <label class="radio-item big">
+                        <input type="radio" name="plan_type" value="Normal" required>
+                        <span class="icon">🏛️</span>
+                        <span class="label">PLANO NORMAL</span>
+                    </label>
+                    <label class="radio-item big">
+                        <input type="radio" name="plan_type" value="Pass">
+                        <span class="icon">🎫</span>
+                        <span class="label">PLANO PASS</span>
+                        <small>Gympass/TotalPass</small>
+                    </label>
+                    <label class="radio-item big">
+                        <input type="radio" name="plan_type" value="Inativo">
+                        <span class="icon">✨</span>
+                        <span class="label">NÃO ESTOU TREINANDO</span>
+                        <small>Ex-aluno / Inativo</small>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Passo 3: Frequência -->
+            <section class="quiz-step" data-step="4">
+                <h1>FREQUÊNCIA DE TREINO</h1>
+                <p class="subtitle">Quantas vezes na semana você pretende treinar?</p>
+                <div class="radio-group row">
+                    <label class="radio-item chip">
+                        <input type="radio" name="frequency" value="1x" required>
+                        <span>1x</span>
+                    </label>
+                    <label class="radio-item chip">
+                        <input type="radio" name="frequency" value="2x">
+                        <span>2x</span>
+                    </label>
+                    <label class="radio-item chip">
+                        <input type="radio" name="frequency" value="3x">
+                        <span>3x</span>
+                    </label>
+                    <label class="radio-item chip">
+                        <input type="radio" name="frequency" value="4x">
+                        <span>4x</span>
+                    </label>
+                    <label class="radio-item chip">
+                        <input type="radio" name="frequency" value="5x">
+                        <span>5x</span>
+                    </label>
+                </div>
+            </section>
+
+            <!-- Passo 4: Grade de Horários -->
+            <section class="quiz-step" data-step="5">
+                <h1>PERSONALIZAÇÃO DA GRADE</h1>
+                <p class="subtitle">Selecione os dias e horários que você pretende treinar para organizarmos sua jornada.</p>
+                
+                <div class="schedule-guide">
+                    <div class="guide-item">
+                        <span>1</span>
+                        Dia
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="guide-item">
+                        <span>2</span>
+                        Horário
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="guide-item">
+                        <span>3</span>
+                        Adicionar
+                    </div>
+                </div>
+                
+                <div class="preference-list-container">
+                    <div id="preference-list" class="preference-list">
+                        <!-- Itens adicionados aparecem aqui -->
+                    </div>
+
+                    <div class="add-schedule-control">
+                        <div class="selector-row">
+                            <select id="day-selector" class="custom-select">
+                                <option value="" disabled selected>Dia</option>
+                                <option value="SEG">Segunda</option>
+                                <option value="TER">Terça</option>
+                                <option value="QUA">Quarta</option>
+                                <option value="QUI">Quinta</option>
+                                <option value="SEX">Sexta</option>
+                                <option value="SAB">Sábado</option>
+                            </select>
+                            <select id="time-selector" class="custom-select">
+                                <option value="" disabled selected>Horário</option>
+                                <!-- JS Generated Hours -->
+                            </select>
+                            <button type="button" id="add-schedule-btn" class="btn-add">
+                                <span class="btn-add-icon">+</span> <span class="btn-add-text">Adicionar</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="selection-footer" id="selection-footer">
+                    <i class="fas fa-calendar-alt"></i> Nenhum horário adicionado à sua grade semanal
+                </div>
+            </section>
+
+            <!-- Passo 5: Outras Modalidades -->
+            <section class="quiz-step" data-step="6">
+                <h1>COMPLEMENTO DE ROTINA</h1>
+                <p class="subtitle">Você pratica alguma outra modalidade ou esporte fora do Coliseu?</p>
+                <div class="radio-group row">
+                    <label class="radio-item big">
+                        <input type="radio" name="other_sport" value="Sim" required>
+                        <span class="icon">🏃</span>
+                        <span class="label">SIM</span>
+                    </label>
+                    <label class="radio-item big">
+                        <input type="radio" name="other_sport" value="Não">
+                        <span class="icon">🛋️</span>
+                        <span class="label">NÃO</span>
+                    </label>
+                </div>
+                <div class="conditional-field" id="other-sport-field">
+                    <div class="input-group" style="margin-top: 24px;">
+                        <label>Qual modalidade?</label>
+                        <input type="text" id="other_sport_detail" placeholder="Ex: Natação, Futebol, Yoga...">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Passo 6: Finalização -->
+            <section class="quiz-step" data-step="7">
+                <h1>REVISÃO FINAL</h1>
+                <p class="subtitle">Confirme suas informações para iniciarmos este novo ciclo de acompanhamento.</p>
+
+                <!-- Review Card: preenchido pelo JS -->
+                <div class="review-card" id="review-card"></div>
+
+                <div class="input-group" style="margin-top: 24px;">
+                    <label>Observações adicionais (opcional)</label>
+                    <textarea id="observations" rows="3" placeholder="Alguma informação extra sobre sua rotina..."></textarea>
+                </div>
+            </section>
+
+            <div class="nav-buttons">
+                <button type="button" id="prev-btn" class="btn-outline" style="display:none">Voltar</button>
+                <button type="button" id="next-btn" class="btn-primary">Continuar</button>
+                <button type="submit" id="submit-btn" class="btn-primary" style="display:none">Enviar Pesquisa</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="success-modal" class="success-modal">
+        <div class="modal-inner">
+            <div style="font-size: 50px; margin-bottom: 20px;">🏆</div>
+            <h2 style="color:var(--brand-red); margin-bottom:15px; font-family:'Outfit'; font-weight:800;">BEM-VINDO AO CLUBE!</h2>
+            <p style="color: #aaa; line-height: 1.6;">Sua jornada personalizada no Coliseu começa agora. Nossa equipe entrará em contato em breve.</p>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 30px;">
+                <button id="whatsapp-redirect-btn" class="btn-primary" style="background-color: #25D366; border-color: #25D366; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);">
+                    <i class="fab fa-whatsapp" style="margin-right: 8px;"></i> Falar com o Coliseu agora
+                </button>
+                <button onclick="window.location.reload()" class="btn-outline" style="border-color: rgba(255,255,255,0.1);">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/research-page/main.js"></script>
+</body>
+</html>
