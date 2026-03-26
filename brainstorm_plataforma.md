@@ -57,7 +57,6 @@ O perfil não é apenas uma página de dados estáticos, é o "painel de control
 -   **Marcação e Logística**
     -   Calendário limpo com as turmas.
     -   Fluxo estúpido e simples para avisar que vai faltar e repor em outro horário sem burocracia do balcão.
--   **O Cofre (Conteúdo de Valor)**
     -   Área protegida onde só membros têm acesso a conteúdos da "Caixa de Ferramentas" e treinos bônus do F03.
 -  **Comunidade (Pós-Treino)**
     -   O ritual diário: Lançar seu tempo do WOD.
@@ -91,7 +90,7 @@ O WOD não é apenas uma informação, é o motor da Box. Ele aparecerá em 3 lu
 1.  **No App (Dashboard do Aluno):**
     -   **Visualização Apenas (Somente Leitura):** O aluno consome a informação do treino e vídeos, sem permissão de edição.
     -   **Card de Destaque:** No topo da tela inicial, mostrando o "WOD de Hoje" assim que o aluno abre o app.
-    -   **Preview:** Abre o detalhamento (Aquecimento, Técnica e WOD) com vídeos explicativos dos movimentos (integrado com o "Cofre").
+    -   **Preview:** Abre o detalhamento (Aquecimento, Técnica e WOD).
     -   **Botão "Logar Resultado":** Aparece apenas após o check-in ser validado.
 2.  **No Wod Tv (O Painel Central do Box):**
     -   **URL Dedicada (Modo Display):** Uma página web otimizada para visualização em grandes telas (`wodtv.coliseufit.com`).
@@ -122,7 +121,7 @@ O WOD não é apenas uma informação, é o motor da Box. Ele aparecerá em 3 lu
     -   *XP como Inteligência de Suporte:*
         -   O sistema monitora a assiduidade e performance (check-ins e PRs) gerando um saldo de XP.
         -   O XP serve como um "Termômetro" para ajudar o gestor a decidir quem merece o próximo nível, mas não é o único critério.
-    -   *Recompensa Real:* Cada nível atingido (ou atribuído) pode liberar benefícios automáticos (ex: 5% de desconto na loja, acesso a uma nova área do "Cofre" ou um convite para o evento VIP trimestral).
+    -   *Recompensa Real:* Cada nível atingido (ou atribuído) pode liberar benefícios automáticos (ex: 5% de desconto na loja ou um convite para o evento VIP trimestral).
 
 ---
 *   **Social (Quadro do Box):**
@@ -148,10 +147,6 @@ O WOD não é apenas uma informação, é o motor da Box. Ele aparecerá em 3 lu
         -   **Botão "Chamar no WhatsApp":** Direto na lista de presença para cobrar alunos recorrentes que faltaram sem avisar.
     -   **Cronômetro Integrado (Conceito):** Possibilidade do app espelhar um cronômetro na TV do box, puxando o WOD do dia automaticamente.
     -   **Gestão do Treino (Editor de WOD):** Interface exclusiva para o Head Coach/Gestor criar e editar o treino (Aquecimento, Técnica e WOD) com suporte a vídeos e tags de movimentos. O Aluno não tem permissão de edição.
-*   **Gestão de Conteúdo (O Cofre):**
-    *   *O Problema:* Conteúdo educacional em academias costuma ser links soltos de WhatsApp que se perdem.
-    -   *Conceito Coliseu (Evolução Ideal):* Uma biblioteca visual estilo "Netflix" com analytics de visualização assistida por aluno.
-    -   *Simplificação V1 (Vitrine Bloqueada):* Para focar em agilidade na Primeira Versão, o Cofre atua como um portão: o aluno que logar através de um tier pago do Clube recebe a aba. Nela, o material e playbooks estarão num layout incrivelmente rico e premium com botões diretos de PDF Viewer ou Embedded Videos do Vimeo sem distrações—antes de entrar em lógicas intrincadas de streaming e tracking.
 
 ---
 

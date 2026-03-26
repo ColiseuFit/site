@@ -33,3 +33,15 @@ Design/
 *.obsidian
 .obsidian/
 .vercel
+.agents/ 
+docs/
+Design/
+Referencias/
+
+# AI & Personal Brain (Antigravity/Gemini)
+.gemini/
+antigravity/
+brain/
+*.md.tmp
+task.md
+brainstorm_plataforma.md

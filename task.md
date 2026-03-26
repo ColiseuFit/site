@@ -3,5 +3,27 @@
 - [x] Brainstorming Estratégico (Salvo em brainstorm_plataforma.md)
 - [x] Refinamento dos Campos do Perfil do Aluno (Identidade Digital)
 - [x] Planejamento de Acesso e Onboarding (Login/Cadastro)
-- [/] Mapeamento da Jornada da Operação (Box)
-- [ ] Mapeamento da Jornada da Gestão (Cofre/Estratégico)
+- [x] Otimização UX Estrutural
+  - [x] **A Arena (Home):** Focar 100% no Check-in + Resumo do WOD ativo.
+  - [x] **Atividade (Timeline):** Transformar em Timeline Estilo NRC com Filtros de Período e Gráfico de Frequência.
+    - [x] Adicionar Indicador de 'Streak' (Consistência).
+    - [x] Adicionar 'Total XP' do período nas estatísticas.
+  - [x] **O Clube (Comunidade):** Nova aba dedicada ao Leaderboard (Liga Semanal).
+  - [x] **O Atleta (Perfil):** Redesenhar o Hero Section usando o conceito de 'Level Card'.`BottomNav` e `StudentHeader`
+    - [x] Refatorar `/profile` e `/treinos` (Design System)
+        - [x] Dashboard dinâmico (Filtros: Semana/Mês/Ano/Tudo)
+        - [x] Matriz de Batalha (Heatmap de Frequência)
+        - [x] Lógica de Fogo (Streak) com Descanso Protegido
+        - [x] Arsenal de Guerra (Contagem total de Burpees, Cleans, etc.)
+        - [x] Gráfico de Tendência (Sparklines/Barras)
+        - [x] UX/UI Motion & Fluidez (Contagem e Entradas Staggered)
+    - [x] Implementar Skeletons/Suspense
+    - [x] Polimento final e documentação (Playbooks & SOPs)
+    - [x] Aba Clube: Liga Semanal e Feed (V1.2)
+    - [x] Aba Atleta: Level Card e Progressão (V1.2)
+- [x] Lapidação da Experiência do Aluno (V1.1)
+    - [x] Implementar Lógica de Check-in em Tempo Real (Action + Toast)
+    - [x] Refinar Animações de Progressão de XP (Glow Dinâmico)
+    - [x] Integrar Lousa Digital (Leaderboard) com Dados Reais
+- [ ] Mapeamento da Jornada da Operação (Box)
+- [ ] Mapeamento da Jornada da Gestão (Estratégico)

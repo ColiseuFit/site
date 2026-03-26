@@ -4,13 +4,34 @@ import { createClient as createAdminClient } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 
-export async function createStudent(formData: FormData) {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-  const fullName = formData.get("full_name") as string;
-  const level = formData.get("level") as string || "Iniciante";
+import { createStudentSchema } from "@/lib/validations/security_schemas";
 
-  // Verifica a sessão atual e se ele é admin/reception
+/**
+ * Creates a new student athlete in both Auth and Database.
+ * 
+ * @security
+ * - Only 'admin' or 'reception' roles can execute this.
+ * - Uses a separate admin client bypassing RLS for initial creation and Auth API.
+ * - Validates input via `createStudentSchema`.
+ * 
+ * @param {FormData} formData - The raw form data from the student creation form.
+ */
+export async function createStudent(formData: FormData) {
+  // 0. Data Validation with Zod
+  const rawData = {
+    email: formData.get("email"),
+    password: formData.get("password"),
+    full_name: formData.get("full_name"),
+    level: formData.get("level") || "branco",
+  };
+
+  const validation = createStudentSchema.safeParse(rawData);
+  if (!validation.success) {
+    return { error: "Dados inválidos: " + validation.error.issues[0].message };
+  }
+  const { email, password, full_name: fullName, level } = validation.data;
+
+  // 1. Verifica a sessão atual e se ele é admin/reception
   const supabase = await createClient();
   const { data: { user: currentUser } } = await supabase.auth.getUser();
   if (!currentUser) return { error: "Sem sessão logada." };

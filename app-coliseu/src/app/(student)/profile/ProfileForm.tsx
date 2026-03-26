@@ -67,31 +67,35 @@ export default function ProfileForm({ user, profile }: { user: any, profile: any
 
   return (
     <div style={{
-      background: "var(--surface)",
-      border: "1px solid var(--border)",
-      borderRadius: "var(--radius)",
-      padding: "24px",
+      background: "#0E0E0E",
+      border: "1px solid rgba(255,255,255,0.05)",
+      padding: "32px 24px",
     }}>
       
-      {/* Exibição e Botão de Foto */}
-      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "32px" }}>
+      {/* Avatar Section */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "40px" }}>
         <div style={{
-          width: "96px",
-          height: "96px",
-          borderRadius: "50%",
-          background: "var(--surface-2)",
-          border: "2px dashed var(--border-strong)",
+          width: "120px",
+          height: "120px",
+          background: "#050505",
+          border: "1px solid rgba(255,255,255,0.08)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           overflow: "hidden",
+          position: "relative",
           marginBottom: "16px",
-          fontSize: "32px",
         }}>
+          {/* Corner accents */}
+          <div style={{ position: "absolute", top: 0, left: 0, width: "12px", height: "12px", borderTop: "2px solid #E31B23", borderLeft: "2px solid #E31B23" }} />
+          <div style={{ position: "absolute", bottom: 0, right: 0, width: "12px", height: "12px", borderBottom: "2px solid #E31B23", borderRight: "2px solid #E31B23" }} />
+
           {avatarUrl ? (
-            <img src={avatarUrl} alt="Avatar" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            <img src={avatarUrl} alt="Avatar" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(100%) contrast(1.1)" }} />
           ) : (
-            "👤"
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="rgba(255,255,255,0.1)">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+            </svg>
           )}
         </div>
         
@@ -107,56 +111,269 @@ export default function ProfileForm({ user, profile }: { user: any, profile: any
         <button 
           type="button" 
           onClick={() => fileInputRef.current?.click()}
-          className="btn-icon"
           disabled={uploading}
+          style={{
+            background: "transparent",
+            border: "1px solid rgba(255,255,255,0.1)",
+            color: "rgba(255,255,255,0.5)",
+            padding: "8px 16px",
+            fontSize: "10px",
+            fontWeight: 700,
+            letterSpacing: "0.1em",
+            textTransform: "uppercase",
+            cursor: "pointer",
+            transition: "all 0.2s",
+          }}
         >
-          {uploading ? "Enviando..." : "Alterar Foto"}
+          {uploading ? "SINCRO..." : "ALTERAR FOTO"}
         </button>
       </div>
 
-      <form action={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+      <form action={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
         
-        <div>
-          <label style={{ display: "block", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", color: "var(--text-3)", marginBottom: "8px", letterSpacing: "1px" }}>
-            Como você quer ser chamado
-          </label>
-          <input 
-            type="text" 
-            name="display_name" 
-            defaultValue={profile?.display_name || ""} 
-            placeholder="Ex: João Silva" 
-          />
+        {/* ── PERSONALIZAÇÃO ── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+            <div style={{ width: "4px", height: "16px", background: "#E31B23" }} />
+            <h3 style={{ fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#FFF" }}>PERSONALIZAÇÃO</h3>
+          </div>
+
+          <div style={{ position: "relative" }}>
+            <label style={{ 
+              display: "block", 
+              fontSize: "9px", 
+              fontWeight: 700, 
+              textTransform: "uppercase", 
+              color: "rgba(255,255,255,0.25)", 
+              marginBottom: "10px", 
+              letterSpacing: "0.2em" 
+            }}>
+              Codinome de Atleta
+            </label>
+            <input 
+              type="text" 
+              name="display_name" 
+              defaultValue={profile?.display_name || ""} 
+              placeholder="Ex: JOÃO SILVA" 
+              style={{
+                width: "100%",
+                background: "#050505",
+                border: "1px solid rgba(255,255,255,0.08)",
+                padding: "14px 16px",
+                color: "#FFFFFF",
+                fontSize: "14px",
+                fontFamily: "'Inter', sans-serif",
+                outline: "none",
+                borderRadius: 0,
+              }}
+            />
+          </div>
+
+          <div style={{ position: "relative" }}>
+            <label style={{ 
+              display: "block", 
+              fontSize: "9px", 
+              fontWeight: 700, 
+              textTransform: "uppercase", 
+              color: "rgba(255,255,255,0.25)", 
+              marginBottom: "10px", 
+              letterSpacing: "0.2em" 
+            }}>
+              Gênero
+            </label>
+            <select 
+              name="gender" 
+              defaultValue={profile?.gender || ""} 
+              style={{
+                width: "100%",
+                background: "#050505",
+                border: "1px solid rgba(255,255,255,0.08)",
+                padding: "14px 16px",
+                color: "#FFFFFF",
+                fontSize: "14px",
+                fontFamily: "'Inter', sans-serif",
+                outline: "none",
+                borderRadius: 0,
+                appearance: "none",
+              }}
+            >
+              <option value="" disabled>Selecione...</option>
+              <option value="Masculino">Masculino</option>
+              <option value="Feminino">Feminino</option>
+            </select>
+          </div>
+
+          <div style={{ position: "relative" }}>
+            <label style={{ 
+              display: "block", 
+              fontSize: "9px", 
+              fontWeight: 700, 
+              textTransform: "uppercase", 
+              color: "rgba(255,255,255,0.25)", 
+              marginBottom: "10px", 
+              letterSpacing: "0.2em" 
+            }}>
+              Ficha Biográfica
+            </label>
+            <textarea 
+              name="bio" 
+              defaultValue={profile?.bio || ""} 
+              rows={4}
+              placeholder="Ex: FOCADO EM LPO E PERFORMANCE..." 
+              style={{ 
+                width: "100%",
+                background: "#050505",
+                border: "1px solid rgba(255,255,255,0.08)",
+                padding: "14px 16px",
+                color: "#FFFFFF",
+                fontSize: "14px",
+                fontFamily: "'Inter', sans-serif",
+                outline: "none",
+                borderRadius: 0,
+                resize: "none" 
+              }}
+            />
+          </div>
         </div>
 
-        <div>
-          <label style={{ display: "block", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", color: "var(--text-3)", marginBottom: "8px", letterSpacing: "1px" }}>
-            Sua Biografia
-          </label>
-          <textarea 
-            name="bio" 
-            defaultValue={profile?.bio || ""} 
-            rows={3}
-            placeholder="Ex: Focando em LPO e calistenia." 
-            style={{ resize: "none" }}
-          />
+        {/* ── DADOS PESSOAIS ── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
+            <div style={{ width: "4px", height: "16px", background: "#E31B23" }} />
+            <h3 style={{ fontSize: "11px", fontWeight: 900, textTransform: "uppercase", letterSpacing: "0.1em", color: "#FFF" }}>DADOS PESSOAIS</h3>
+          </div>
+
+          <div style={{ position: "relative" }}>
+            <label style={{ 
+              display: "block", 
+              fontSize: "9px", 
+              fontWeight: 700, 
+              textTransform: "uppercase", 
+              color: "rgba(255,255,255,0.25)", 
+              marginBottom: "10px", 
+              letterSpacing: "0.2em" 
+            }}>
+              Nome Completo
+            </label>
+            <input 
+              type="text" 
+              name="full_name" 
+              defaultValue={profile?.full_name || ""} 
+              placeholder="Ex: JOÃO DA SILVA OLIVEIRA" 
+              style={{
+                width: "100%",
+                background: "#050505",
+                border: "1px solid rgba(255,255,255,0.08)",
+                padding: "14px 16px",
+                color: "#FFFFFF",
+                fontSize: "14px",
+                fontFamily: "'Inter', sans-serif",
+                outline: "none",
+                borderRadius: 0,
+              }}
+            />
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+            <div style={{ position: "relative" }}>
+              <label style={{ 
+                display: "block", 
+                fontSize: "9px", 
+                fontWeight: 700, 
+                textTransform: "uppercase", 
+                color: "rgba(255,255,255,0.25)", 
+                marginBottom: "10px", 
+                letterSpacing: "0.2em" 
+              }}>
+                CPF
+              </label>
+              <input 
+                type="text" 
+                name="cpf" 
+                defaultValue={profile?.cpf || ""} 
+                placeholder="000.000.000-00" 
+                style={{
+                  width: "100%",
+                  background: "#050505",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  padding: "14px 16px",
+                  color: "#FFFFFF",
+                  fontSize: "14px",
+                  fontFamily: "'Inter', sans-serif",
+                  outline: "none",
+                  borderRadius: 0,
+                }}
+              />
+            </div>
+
+            <div style={{ position: "relative" }}>
+              <label style={{ 
+                display: "block", 
+                fontSize: "9px", 
+                fontWeight: 700, 
+                textTransform: "uppercase", 
+                color: "rgba(255,255,255,0.25)", 
+                marginBottom: "10px", 
+                letterSpacing: "0.2em" 
+              }}>
+                Nascimento
+              </label>
+              <input 
+                type="date" 
+                name="birth_date" 
+                defaultValue={profile?.birth_date || ""} 
+                style={{
+                  width: "100%",
+                  background: "#050505",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  padding: "13px 16px",
+                  color: "#FFFFFF",
+                  fontSize: "14px",
+                  fontFamily: "'Inter', sans-serif",
+                  outline: "none",
+                  borderRadius: 0,
+                  colorScheme: "dark",
+                }}
+              />
+            </div>
+          </div>
         </div>
 
         {message && (
           <div style={{
-            padding: "12px",
-            borderRadius: "var(--radius-sm)",
-            background: message.type === "error" ? "var(--red-dim)" : "rgba(46,213,115,0.1)",
-            border: `1px solid ${message.type === "error" ? "rgba(227,27,35,0.3)" : "rgba(46,213,115,0.3)"}`,
-            color: message.type === "error" ? "var(--red)" : "var(--green)",
-            fontSize: "13px",
-            textAlign: "center"
+            padding: "14px",
+            background: message.type === "error" ? "rgba(227,27,35,0.1)" : "rgba(255,255,255,0.03)",
+            border: `1px solid ${message.type === "error" ? "rgba(227,27,35,0.2)" : "rgba(255,255,255,0.1)"}`,
+            color: message.type === "error" ? "#E31B23" : "#FFFFFF",
+            fontSize: "12px",
+            fontWeight: 600,
+            textAlign: "center",
+            textTransform: "uppercase",
+            letterSpacing: "0.05em",
           }}>
             {message.text}
           </div>
         )}
 
-        <button type="submit" className="btn-primary" disabled={loading} style={{ marginTop: "8px" }}>
-          {loading ? "Salvando..." : "Salvar Perfil"}
+        <button 
+          type="submit" 
+          disabled={loading} 
+          style={{ 
+            marginTop: "8px",
+            background: "#E31B23",
+            color: "#FFFFFF",
+            border: "none",
+            padding: "16px",
+            fontSize: "12px",
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: "0.15em",
+            cursor: "pointer",
+            transition: "all 0.2s",
+            fontFamily: "'Outfit', sans-serif",
+          }}
+        >
+          {loading ? "PROCESSANDO..." : "SALVAR ALTERAÇÕES"}
         </button>
       </form>
     </div>

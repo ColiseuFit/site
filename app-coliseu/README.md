@@ -1,7 +1,10 @@
 # Plataforma Coliseu Clube (APP MVP)
 
 A "Identidade Digital" exclusiva da Academia Coliseu.  
-Este projeto fornece duas interfaces fundamentais para o negócio: a **Recepção** (que gera matrículas blindadas contra acessos indevidos) e o **Painel do Aluno** (que permite o acompanhamento do Nível, personalização de Perfil com Avatar e acesso à Tribo).
+Este projeto fornece duas interfaces fundamentais para o negócio: a **Recepção** (que gera matrículas blindadas contra acessos indevidos) e o **Painel do Aluno**.
+
+> [!IMPORTANT]
+> **Documentação Centralizada:** Para arquitetura do sistema e playbooks operacionais, consulte o [**README Principal do Projeto**](../README.md).
 
 ## 🌍 Produção (Ao Vivo)
 - **URL Oficial:** [https://app-coliseu.vercel.app](https://app-coliseu.vercel.app)
