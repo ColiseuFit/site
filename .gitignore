@@ -38,6 +38,11 @@ docs/
 Design/
 Referencias/
 
+# Next.js Build & Cache
+.next/
+out/
+build/
+
 # AI & Personal Brain (Antigravity/Gemini)
 .gemini/
 antigravity/
@@ -45,3 +50,4 @@ brain/
 *.md.tmp
 task.md
 brainstorm_plataforma.md
+test_login.js
