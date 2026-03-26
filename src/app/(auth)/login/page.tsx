@@ -17,7 +17,7 @@ export default function LoginPage() {
     setError(null);
     const result = await login(formData);
     if (result?.error) {
-      setError("E-mail ou senha incorretos.");
+      setError(result.error);
       setLoading(false);
     }
   }
