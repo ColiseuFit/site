@@ -170,7 +170,7 @@ export default async function EvaluationsPage() {
           }}
         >
           {[
-            { href: "/app", label: "Início", path: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z", type: "fill" },
+            { href: "/dashboard", label: "Início", path: "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z", type: "fill" },
             { href: "/treinos", label: "Treinos", path: "M13 2L3 14h9l-1 8 10-12h-9l1-8z", type: "stroke" },
             { href: "/profile", label: "Perfil", path: "M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2 M12 7a4 4 0 1 0 0-8 4 4 0 0 0 0 8z", type: "stroke" },
           ].map((item) => {

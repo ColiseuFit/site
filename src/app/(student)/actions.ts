@@ -124,7 +124,7 @@ export async function cancelCheckIn(wodId: string) {
     .update({ xp_balance: newXP })
     .eq("id", user.id);
 
-  revalidatePath("/app");
+  revalidatePath("/dashboard");
   revalidatePath("/profile");
 
   return { success: true };

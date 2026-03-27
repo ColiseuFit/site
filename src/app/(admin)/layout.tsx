@@ -20,7 +20,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   }
 
   if (!roleData || (roleData.role !== "admin" && roleData.role !== "reception")) {
-    redirect("/app");
+    redirect("/dashboard");
   }
 
   return <>{children}</>;
