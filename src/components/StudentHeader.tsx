@@ -19,7 +19,7 @@ export default function StudentHeader() {
       borderBottom: "1px solid var(--border-glow)",
     }}>
       <div style={{ maxWidth: "480px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <Link href="/app" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+        <Link href="/dashboard" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
           <img 
             src="/logo-coliseu-white.svg" 
             alt="Coliseu" 

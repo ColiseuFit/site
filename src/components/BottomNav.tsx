@@ -12,10 +12,10 @@ export default function BottomNav() {
 
   const navItems = [
     {
-      href: "/app",
+      href: "/dashboard",
       icon: "home",
       label: "INÍCIO",
-      active: pathname === "/app",
+      active: pathname === "/dashboard",
     },
     {
       href: "/treinos",

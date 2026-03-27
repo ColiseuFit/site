@@ -70,7 +70,7 @@ export async function updateProfile(formData: FormData) {
     return { error: "Erro ao salvar perfil: " + error.message };
   }
 
-  revalidatePath("/app");
+  revalidatePath("/dashboard");
   revalidatePath("/profile");
   revalidatePath("/profile/edit");
   

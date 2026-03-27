@@ -13,7 +13,7 @@ export default async function LandingPage() {
   const { data: { user } } = await supabase.auth.getUser();
 
   if (user) {
-    redirect("/app");
+    redirect("/dashboard");
   }
 
   redirect("/login");

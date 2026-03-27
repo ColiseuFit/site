@@ -2,13 +2,13 @@ import { updateSession } from "@/lib/supabase/middleware";
 import type { NextRequest } from "next/server";
 
 /**
- * Global Authentication & Session Middleware.
+ * Global Authentication & Session Proxy (Next.js 16).
  * 
  * @standards
- * - Renamed to `middleware` per Next.js 15/16 standards.
+ * - Migrated from `middleware` to `proxy` per Next.js 16 standards.
  * - Updates Supabase sessions and handles protected route redirects.
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   return await updateSession(request);
 }
 

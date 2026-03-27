@@ -36,7 +36,7 @@ export default async function TreinosPage() {
   const wodHistory = [
     {
       id: "1",
-      date: "Qui · 26 Mar",
+      date: new Date().toISOString(), // Hoje
       tag: "AMRAP",
       title: "Hell's Kitchen #47",
       description: "Amrap 12' - 10 Burpees, 15 Wall Balls, 20 Double Unders",
@@ -48,7 +48,7 @@ export default async function TreinosPage() {
     },
     {
       id: "2",
-      date: "Ontem",
+      date: new Date(Date.now() - 86400000).toISOString(), // Ontem
       tag: "Força",
       title: "Back Squat 5x5",
       description: "Trabalho de força, 85% do PR. 5 séries de 5 repetições.",
@@ -60,7 +60,7 @@ export default async function TreinosPage() {
     },
     {
       id: "3",
-      date: "Segunda-feira",
+      date: "2026-03-24T10:00:00Z",
       tag: "LPO",
       title: "Snatch Complex",
       description: "1 Squat Snatch + 2 Hang Power Snatch (Every 2 mins for 10 mins)",
@@ -72,7 +72,7 @@ export default async function TreinosPage() {
     },
     {
       id: "4",
-      date: "Sexta-feira",
+      date: "2026-03-22T15:00:00Z",
       tag: "Gymnastics",
       title: "Hero WOD 'Murph'",
       description: "Treino em homenagem ao tenente Michael P. Murphy. (Com Colete 10kg)",
@@ -84,7 +84,7 @@ export default async function TreinosPage() {
     },
     {
       id: "5",
-      date: "Semana Passada",
+      date: "2026-03-21T09:30:00Z",
       tag: "Skill",
       title: "Bar Muscle Up Clinical",
       description: "Trabalho técnico de transição e eficiência no kipping.",

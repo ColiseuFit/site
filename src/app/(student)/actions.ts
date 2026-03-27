@@ -69,7 +69,8 @@ export async function performCheckIn(wodId: string) {
     .update({ xp_balance: newXP })
     .eq("id", user.id);
 
-  revalidatePath("/app");
+  revalidatePath("/dashboard");
+  revalidatePath("/treinos");
   revalidatePath("/profile");
   
   return { success: true };
