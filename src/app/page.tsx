@@ -1,7 +1,20 @@
-export default function LandingPage() {
-  return (
-    <div style={{ backgroundColor: "#000", color: "#fff", height: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <h1>Coliseu V2 - Root Stability Test</h1>
-    </div>
-  );
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+
+/**
+ * Root Landing Page (V2).
+ * 
+ * @logic
+ * - If user session exists: Redirect to student dashboard (/app).
+ * - Otherwise: Redirect to authentication portal (/login).
+ */
+export default async function LandingPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect("/app");
+  }
+
+  redirect("/login");
 }
